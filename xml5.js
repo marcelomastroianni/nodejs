@@ -72,6 +72,7 @@ fs.readFile('./config.xml', 'utf8', function (err,data) {
     
     writeFile("config_2.xml",xml.toString());
     //console.log(xml.toString());
+	//comentario
     
     
     
