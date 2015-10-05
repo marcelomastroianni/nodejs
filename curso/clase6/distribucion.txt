@@ -55,5 +55,20 @@ Solamente incluimos el archivo package.json
 
 
 
+Luego, cuando queremos instalar nuestro paquete en otra pc. 
+Lo que hacemos es pararnos en la carpeta donde esta el archivo package.json
+
+y tecleamos en la consola: 
+
+npm install
+
+Y automaticamente se instalar todas nuestras dependencias.
+
+Cualquier cosa que le pongamos -g a la instalacion, lo lleva al directorio del usuario, asi se instala glabal.
+No todos los paquetes se instalan global.
+
+
+
+
 
 
