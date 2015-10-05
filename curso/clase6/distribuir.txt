@@ -1,0 +1,11 @@
+Se usa el archivo package.json para indicar los paquetes de que depende nuestro programa.
+
+Hay una herramienta de nmp que se encarga de esto
+
+npm init 
+
+Genera el archivo package.json automaticamente:
+npm init -i
+
+
+cat package.json
