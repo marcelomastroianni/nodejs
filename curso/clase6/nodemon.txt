@@ -1,0 +1,10 @@
+sudo npm install -g nodemon
+
+
+nodemon: se puede usar en desarrollo como reemplazo de node.
+
+por ejemplo si tecleamos nodemon index.js levanta el servidor en nuestro ejemplo
+
+lo que tiene de diferente es que hay un proceso que esta monitoreando la carpeta en el disco y cuando detecta algun cambio levanta nuevamente el proceso.
+
+
