@@ -1,0 +1,4 @@
+Dado un json con datos, escribir un servidor con express.json que este leyendo rutas en la url
+y que devuelva la lista de items del json, y que cuando recibe un id en una variable en la ruta devuelva solamente el
+item que coincida con la coleccion dentro de los objetos json.
+
