@@ -1,0 +1,7 @@
+forever.js
+
+Similar a nodemon pero si fallo cuando se levanta el servidor sigue intentando levantarlo indefinidamente.
+
+Sirve mas para entornos productivos.
+
+
