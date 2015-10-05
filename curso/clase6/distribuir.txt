@@ -4,8 +4,56 @@ Hay una herramienta de nmp que se encarga de esto
 
 npm init 
 
-Genera el archivo package.json automaticamente:
-npm init -i
+Generar el archivo package.json automaticamente:
+
+npm init -y
+
+Crea el siguiente archivo: 
+
+{
+  "name": "clase-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
 
 
 cat package.json
+
+
+npm install express --save
+
+Luego figura la dependencia de express en el archivo package.json
+
+{
+  "name": "clase-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
+
+
+
+
+Cuando distribuimos el paquete no incluimos la carpeta node_modules.
+Solamente incluimos el archivo package.json
+
+
+
+
+
