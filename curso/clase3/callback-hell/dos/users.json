@@ -1,0 +1,32 @@
+[
+  {
+    "id" : 126442,
+    "mail" : "userOne@gmail.com",
+    "company" : 1 
+  },
+  {
+    "id" : 872346,
+    "mail" : "userTwo@gmail.com",
+    "company" : 2
+  },
+  {
+    "id" : 738264,
+    "mail" : "userThree@gmail.com",
+    "company" : 3
+  },
+  {
+    "id" : 614598,
+    "mail" : "userFour@gmail.com",
+    "company" : 4
+  },
+  {
+    "id" : 928374,
+    "mail" : "userFive@gmail.com",
+    "company" : 5
+  },
+  {
+    "id" : 234987,
+    "mail" : "userSix@gmail.com",
+    "company" : 6
+  }  
+]
