@@ -59,6 +59,25 @@ lo que tiene de diferente es que hay un proceso que esta monitoreando la carpeta
 
 
 
+-------------------------------------------------------------------
+
+
+Cuando queremos leer la siguiente pagina el nevagador web:
+
+http://localhost:3000/hello/alguien
+
+Otenemos
+
+Hello, alguien
+
+cuando se ejecuta :
+
+app.get('/hello/:name', function(req,res){
+    res.send("Hello, " + req.params.name);    
+});
+
+
+
 
 
 
