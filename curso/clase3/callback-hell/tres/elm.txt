@@ -1,0 +1,1 @@
+Elm is a functional programming language for declaratively creating web browser based graphical user interfaces. Elm uses the Functional Reactive Programming style and purely functional graphical layout to build user interface without any destructive updates.
