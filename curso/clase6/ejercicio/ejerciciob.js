@@ -45,6 +45,9 @@ app.get('/user/:id', function(req,res){
             data: {}
         });
          
+         
+        res.json(response);
+         
     });
     
 });
