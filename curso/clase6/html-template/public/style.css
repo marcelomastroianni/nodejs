@@ -1,0 +1,17 @@
+ul{
+     width: 40%;
+}
+
+li{
+    display: block;
+    width: 300px;
+    margin: 2px;
+        
+}
+
+li a{
+     padding: 5px;
+    display: inline;
+    background-color: green;
+    
+}
