@@ -28,6 +28,7 @@ app.get('/users/',function(req,res,next){
             return "<li><a href='/user/" + user._id + "' >" + user.name + "</a></li>"
         });
         
+        //por defecto devuelve html
         res.send("<ul>" + list.join("") + "</ul>" );        
         
         
@@ -47,17 +48,12 @@ app.get('/user/:id', function(req,res){
             //Si se cumple la condicion devuelvo el usuario
             //Si no se cumple la condicion devuelvo defaultRes, que en este caso es el valro con el que
             //inicializo reduce
-            return user._id == req.params.id ? {   error: false,
-                                                   data: user
-                                                } :  defaultRes;
-        },{
-            error: true,
-            mensaje:"Usuario inexistente",
-            data: {}
-        });
+            return user._id == req.params.id ? "<h1> "+ user.name  +  " </h1>" :  defaultRes;
+        }, "<h1>Usuario inexistente</h1>");
          
-         
-        res.json(response);
+        
+         //por defecto devuelve html
+        res.send(response);
          
     });
     
