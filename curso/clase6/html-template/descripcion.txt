@@ -2,3 +2,6 @@ El template por defecte de Express es Jade.
 Pero vamos a usar otro.
 Para mantener la extension de los archivos html a .html y no .jade
 Vamos a usar ejs
+Handelbar tambien es soportado por express.
+Consolidate.js es un pequeño modulo de node que trae soporte para usar cualquier sistema de templates para que la conexion con express sea transparente.
+
