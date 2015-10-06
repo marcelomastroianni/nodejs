@@ -1,1 +1,14 @@
 
+<html>
+    <head>
+        <title>Intro Express</title>
+    </head>
+    <body>
+        <h1>Usuarios</h1>
+        <ul>
+           <% users.forEach(function(user){ %>
+            <li><a href="/user/<%= user._id %>"> <%= user.name %></a></li>
+            <% }) %>
+        </ul>
+    </body>    
+</html>
