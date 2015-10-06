@@ -1,3 +1,4 @@
 El template por defecte de Express es Jade.
 Pero vamos a usar otro.
 Para mantener la extension de los archivos html a .html y no .jade
+Vamos a usar ejs
