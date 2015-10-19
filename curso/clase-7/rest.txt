@@ -1,0 +1,2 @@
+Un comando GET no puede modificar estado en el servidor. Ni menos borrar nada.
+
