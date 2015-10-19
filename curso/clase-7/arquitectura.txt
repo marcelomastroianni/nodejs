@@ -1,0 +1,45 @@
+
+-----------------------
+Capa Persistencia
+-----------------------
+
+var getUsers = function(callback){
+  if(users){
+    process.nextTick(function(){
+      callback(false, users);
+    })
+  }else{
+    fs.readFile('./data.json', 'utf8', function(err, data){
+      users = JSON.parse(data);
+      callback(null, users);
+    });
+  }
+};
+
+-----------------------
+Capa Modelos:
+-----------------------
+  var response = data.reduce(function(defaultRes, user){
+      return user._id == req.params.id ? {
+        error : false,
+        data : user
+      } : defaultRes;
+    }, {
+      error : true,
+      messge : "Usuario inexistente",
+      data : {}
+    });
+
+-----------------------
+Capa Routes:
+-----------------------
+Lo unico que hacen es leer el request y contestar el response
+
+
+app.get('/users', function(req, res){
+
+});
+
+app.get('/user/:id', function(req, res){
+
+});
