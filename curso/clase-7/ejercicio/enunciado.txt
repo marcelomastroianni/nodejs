@@ -24,5 +24,21 @@ Luego se modificara el programa para que en vez de tomar los datos de memoria lo
 
 
 
+------------------------------------------------------------------
+
+
+Capa Persistencia        Capa Modelos        Capa Routes
+[]                        User                  get/users
+                                                post/users
+                                                get/users/:id
+                                                
+
+
+
+
+
+
+
+
 
 
