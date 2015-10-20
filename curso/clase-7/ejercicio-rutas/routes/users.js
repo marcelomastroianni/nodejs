@@ -1,5 +1,11 @@
 var express = require('express');
 var router = express.Router();
+//para mergear los parametros se pone aca:
+/*
+var router = express.Router();...
+
+*/
+
 var userModel = require("../models/user");
 
 
