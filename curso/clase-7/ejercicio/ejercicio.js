@@ -47,10 +47,9 @@ app.post('/echo', function(req, res){
 });
 
 
-app.post('/users', function(req, res){
-    
+app.post('/users', function(req, res){    
     userModel.create(req.body,function(err,data){
-       res.json(req.body); 
+       res.json(data); 
     });    
 });
 
@@ -66,6 +65,23 @@ app.get('/users/:id', function(req, res){
        res.json(data); 
     });    
 });
+
+
+app.delete('/users/:id', function(req, res){
+  userModel.delete(req.params.id,function(err,data){
+       res.json(data); 
+    });    
+});
+
+
+
+
+app.put('/users/', function(req, res){
+  userModel.update(req.body,function(err,data){
+       res.json(data); 
+    });    
+});
+
 
 
 var server = app.listen(3000, function(){
