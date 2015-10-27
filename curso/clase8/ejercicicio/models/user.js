@@ -33,11 +33,11 @@ exports.delete = function(id,callback){
 }
 
 exports.get = function(id,callback){
-    process.nextTick(function(){       
-        var user = users.reduce(function(prev,actual){
-            return actual.id == id ? actual : prev;     //Si hay dos elementos iguales retorno el ultimo elemento       
-        },null);
-        
-        callback(null,user);
-    });    
+   con.connect(function(err,db){
+    db.collection(DB_COLLECTION)
+    .findOne({_id:oid}).toArray(function(err,result){
+        console.log(result);
+    })
+   
+   });
 }    
