@@ -1,0 +1,30 @@
+
+Para inicializar el servidor:
+mongod
+
+Para entrar en la consola para tirar comandos contra la base de datos:
+mongo
+
+Para importar datos a la base de datos desde archivos JSON:
+mongoimport
+
+
+Comandos dentro de Mongo
+
+/*muestra todas las bases de datos*/
+show databases
+
+/*usa la base de datos test*/
+use test
+
+/*muestra todas las colecciones dentro de la base de datos*/
+show collections
+
+/*borra todos los documentos dentro de la colleccion de users*/
+db.users.remove()
+
+/*muestra la cantidad de objetos dentro de la coleccion users*/
+db.users.count()
+
+/*muestra todos los objetos dentro de la collecion de users*/
+db.users.find()
