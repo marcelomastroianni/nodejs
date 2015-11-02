@@ -19,5 +19,17 @@ db.products.find({}).sort({desc:-1}).limit(10).pretty()
 c) obtener los 10 productos con mayor descuento ordenados por precio
 ----------------------------------------------
 
-
 db.products.find({}).sort({desc:-1,price:1}).limit(10)
+
+----------------------------------------------
+d) agregar un descuento del 5% a todos los productos que tengan un precio superior a $90
+----------------------------------------------
+
+db.products.find({price: {$gt:"$90"}} )
+
+/*Por defecto update actualiza un solo elemento, por eso hay que agregarle el parametro multi en true*/
+/*db.products.update({Selector}, {Campos a modificar}, {parametro multiple})*/
+
+db.products.update({price: {$gt:"$90"}}, {$set: {desc: 5}}, {multi: true})
+
+
