@@ -138,6 +138,15 @@ Cuando el query devuelve mas del 80 porciento de los datos, en estos casos es co
 En el indice tienen todos los datos completos de cada elemento de la coleccion.
 
 
+Agregation Framework: implica una transformacion en los datos
+por ejemplo group by, count, en sql.
 
+tambien cuando la forma en q se quieren obtener los resultados es distinta a como estan los datos.
+por ejemplo agregar campos nuevos, sumas restas, multiplicaciones.
+
+en noSql se resuelve casi siempre con map y reduce.
+en mongoDb tambien se soporta map y reduce, pero eso implica un escaneo de toda la coleccion.
+Pero tenemos Agregation Framework, que es mas eficiente que map y reduce.
+Agregation Framework trabaja como un pipeline donde se van transformando los datos, y el resultado de uno le pasa al siguiente y asi hasta llegar al resultado final
 
 
