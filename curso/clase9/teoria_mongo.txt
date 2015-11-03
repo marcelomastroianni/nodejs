@@ -132,3 +132,12 @@ db.products.createIndex({price:1,desc:1})
 /*Se suele usar mucho de esta forma*/
 db.products.createIndex({ORDER_INDEX,FILTER_INDEX})
 
+
+El indice es util cuando el query me devolvio menos del 30 porciento de los datos totales
+Cuando el query devuelve mas del 80 porciento de los datos, en estos casos es conveniente no tener indice. Por ejemplo en una consulta de logs no es conveniente tener indices.
+En el indice tienen todos los datos completos de cada elemento de la coleccion.
+
+
+
+
+
