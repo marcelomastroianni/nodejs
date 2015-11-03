@@ -2,6 +2,18 @@ Libros:
 MongoDB definitive Guide.
 MongoDB 50 tricks & tips
 
+-----------------------------------------
+IMPORTACION
+-----------------------------------------
+mongoimport --db test --collection products --file products.json
+
+mongoimport --db test --collection users --file users.json
+-----------------------------------------
+
+
+
+
+
 1) REALIZAR LAS SIGUIENTES CONSULTAS EN LA CONSOLA DE MONGO
 
 ----------------------------------------------
