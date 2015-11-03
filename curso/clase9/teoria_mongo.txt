@@ -126,4 +126,9 @@ db.products.createIndex({desc:1})
 
 db.products.createIndex({price:1})
 
+/* indice compuesto*/
+db.products.createIndex({price:1,desc:1})
+
+/*Se suele usar mucho de esta forma*/
+db.products.createIndex({ORDER_INDEX,FILTER_INDEX})
 
