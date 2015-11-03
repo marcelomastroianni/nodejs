@@ -28,3 +28,102 @@ db.users.count()
 
 /*muestra todos los objetos dentro de la collecion de users*/
 db.users.find()
+
+/*Ver los indices creados de la coleccion*/
+/*Ver informacion estadistica de una coleccion*/
+/*Siempre hay por defecto un indice creado por id*/
+> db.products.stats()
+{
+	"ns" : "test.products",
+	"count" : 499,
+	"size" : 43144,
+	"avgObjSize" : 86.46092184368737,
+	"storageSize" : 172032,
+	"numExtents" : 3,
+	"nindexes" : 1,
+	"lastExtentSize" : 131072,
+	"paddingFactor" : 1.0590000000000068,
+	"systemFlags" : 1,
+	"userFlags" : 0,
+	"totalIndexSize" : 24528,
+	"indexSizes" : {
+		"_id_" : 24528
+	},
+	"ok" : 1
+}
+
+/*Borrar indices creados*/
+db.products.dropIndex("price_1_desc_1")
+
+
+db.products.find({desc:{$gt:10}}).explain()
+
+
+
+> db.products.find({desc:{$gt:10}}).explain()
+{
+	"cursor" : "BasicCursor",
+	"isMultiKey" : false,
+	"n" : 216,
+	"nscannedObjects" : 499,
+	"nscanned" : 499,
+	"nscannedObjectsAllPlans" : 499,
+	"nscannedAllPlans" : 499,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 0,
+	"nChunkSkips" : 0,
+	"millis" : 0,
+	"indexBounds" : {
+		
+	},
+	"server" : "jstraining-VM:27017"
+}
+
+
+/*
+  Tiene que ver con si el motor interno de mongo hace busquedas en paralelo. Por ejemplo si hubiera varios indices.
+	"nscannedObjectsAllPlans" : 499,
+	"nscannedAllPlans" : 499,
+	
+	Si tuvo que trabajar para ordenar los datos despues de filtrarlos
+		"scanAndOrder" : false,
+		
+	Si toda la informacion la pudo obtener del indice devuelve true
+			"indexOnly" : false,
+			
+	Tiempo que tardo en milisegundos
+	  "millis" : 0,
+		
+*/
+
+
+db.products.find({desc:{$gt:10}}).sort({price:1}).explain()
+
+
+db.products.createIndex({desc:1})
+
+> db.products.stats()
+{
+	"ns" : "test.products",
+	"count" : 499,
+	"size" : 43144,
+	"avgObjSize" : 86.46092184368737,
+	"storageSize" : 172032,
+	"numExtents" : 3,
+	"nindexes" : 2,
+	"lastExtentSize" : 131072,
+	"paddingFactor" : 1.0590000000000068,
+	"systemFlags" : 1,
+	"userFlags" : 0,
+	"totalIndexSize" : 49056,
+	"indexSizes" : {
+		"_id_" : 24528,
+		"desc_1" : 24528
+	},
+	"ok" : 1
+}
+
+db.products.createIndex({price:1})
+
+
