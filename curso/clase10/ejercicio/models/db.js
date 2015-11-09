@@ -34,3 +34,8 @@ process.on('SIGINT', function(){
     mongoose.connection.close();
     
 });
+
+exports.User = require('./user');
+
+//La carga de archivos q son de codigo se hacen de manera sincronica.
+//Pero tambien se ejecutan una sola vez cuando se instancia la aplicacion
