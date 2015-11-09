@@ -1,43 +1,55 @@
 var con = require('./connection');
 var DB_COLLECTION = 'users';
 
-
-exports.create = function(data,callback){    
-    
-    con.connect(function(err,db){
-        var collection = db.collection(DB_COLLECTION);//Sino existe lo crea 
-        collection.insertOne(data,function(err,result){
-            console.log(result);
-            callback(null,data) //Llamamos al callback de forma asincronica
-        });
+exports.create = function(data, callback){
+  con.connect(function(err, db){
+    var collection = db.collection(DB_COLLECTION);
+    collection.insertOne(data, function(err, result){
+      console.log(result);
+      callback(null, result);
     });
-    
+  });
 };
 
+exports.update = function(data, callback){
+  data._id = con.ObjectID(data._id);
+  con.connect(function(err, db){
+    var collection = db.collection(DB_COLLECTION);
+    collection.updateOne({ _id : data._id }, data, function(err, result){
+      console.log(result);
+      callback(null, result);
+    });
+  });
+};
+
+exports.delete = function(id, callback){
+  var oid = con.ObjectID(id);
+  con.connect(function(err, db){
+    db.collection(DB_COLLECTION)
+    .deleteOne({ _id : oid }, function(err, result){
+      console.log(result);
+      callback(null, result);
+    });
+  });
+};
 
 exports.list = function(callback){
-    process.nextTick(function(){       
-        callback(null,users);
-    });    
-}
-
-
-exports.update = function(data,callback){  
-}
-
-
-
-
-exports.delete = function(id,callback){
-
-}
-
-exports.get = function(id,callback){
-   con.connect(function(err,db){
+  con.connect(function(err, db){
     db.collection(DB_COLLECTION)
-    .findOne({_id:oid}).toArray(function(err,result){
-        console.log(result);
-    })
-   
-   });
-}    
+    .find({}).toArray(function(err, result){
+      console.log(result);
+      callback(null, result);
+    });
+  });
+};
+
+exports.get = function(id, callback){
+  var oid = con.ObjectID(id);
+  con.connect(function(err, db){
+    db.collection(DB_COLLECTION)
+    .findOne({ _id : oid }, function(err, result){
+      console.log(result);
+      callback(null, result);
+    });
+  });
+};
