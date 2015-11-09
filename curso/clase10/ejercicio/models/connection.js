@@ -1,6 +1,6 @@
 var mongo = require('mongodb');
 var client = mongo.MongoClient;
-var dbURL = 'mongodb://localhost:27017/userapi';
+var dbURL = 'mongodb://localhost:27017/test';
 var db = null;
 
 exports.connect = function(callback){
