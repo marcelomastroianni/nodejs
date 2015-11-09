@@ -99,6 +99,43 @@ c) Obtener los 5 paises con mayor cantidad de usuarios de genero masculino
 ----------------------------------------------
 
 
+2) REALIZAR LAS SIGUIENTES CONSULTAS EN LA CONSOLA DE MONGO USANDO AGGREGATION FRAMEWORK
+
+a) De todos los productos cuyo precio sea mayor a $80 calcular la cantidad de productos exixtentes para cada valor de descuento:
+
+ejemplo:
+
+descuento: 10, cantidad de productos: 25,
+descuento: 15, cantidad de productos: 9,
+etc
+
+db.products.aggregate( 
+	{ $match : { price : { $gt : "$80"  } } }, 
+	{ $project : { desc : 1, _id : 0 } }, 
+	{ $group : { _id : "$desc", count : { $sum : 1 } } }  
+)
+
+b) Obtener los 5 paises en con mayor cantidad de usuarios de genero femenino
+
+db.users.aggregate(
+	{ $match : { gender : "Female" } }, 
+	{ $project : { _id:0, gender : 1, country : 1} }, 
+	{ $group : { _id : "$country", female : { $sum : 1}  } }, 
+	{ $sort : { female : -1 } }, 
+	{ $limit : 5} 
+)
+
+c) Obtener los 5 paises con mayor cantidad de usuarios de genero masculino
+
+db.users.aggregate(
+	{ $match : { gender : "Male" } }, 
+	{ $project : { _id:0, gender : 1, country : 1} }, 
+	{ $group : { _id : "$country", male : { $sum : 1}  } }, 
+	{ $sort : { male : -1 } }, 
+	{ $limit : 5} 
+)
+
+
 
 ------------------------------
 Agregation Framework:
