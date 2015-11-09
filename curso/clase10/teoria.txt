@@ -1,3 +1,7 @@
 Clase 10
 
 Mongoose
+
+
+Se suele trabajar con una sola conexion abierta, y se cierra cuando se cae nuestra aplicacion.
+Mongoose ya resuelve el singleton.
