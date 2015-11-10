@@ -1,7 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-var usersRouter = require('./routes/users');
+
+var db = require('./models/db');
+
+var usersRouter = require('./routes/user');
 var app = express();
 
 app.use(bodyParser.json());
