@@ -12,12 +12,10 @@ var userSchema = new mongoose.Schema({
     },
     userName : { 
       type: String, 
-      unique: true,
       required: true
     },
     email: { 
       type: String, 
-      unique: true,
       required: true
     },
     createdOn: { 
@@ -34,7 +32,7 @@ var userSchema = new mongoose.Schema({
 //me deja poner distintos handlers para distintos enventos del ciclo de vida de moongoze
 //antes del save:
 //next es lo que sigue del save
-userSchema.pre('save'),function(next){
+userSchema.pre('save',function(next){
     
     //el modelo seria la instancia del schema
     var user = this;
@@ -69,8 +67,8 @@ userSchema.methods.comparePassword = function(psw,cb){
         }
         cb(null,isMatch);
     }
-    
-}
+    );
+};
 
 /* La forma de usarlo seria la siguiente.
 user.comparePassword('qww123',function(err,isMatch){
