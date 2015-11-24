@@ -5,6 +5,9 @@ var authService = require('./lib/services/auth');
 //load db settings
 var db = require('./lib/models/db');
 
+var error = require('./lib/helpers/error');
+var errorHandler = require('./lib/middlewares/error');
+
 var userRouter = require('./lib/routes/user');
 //var productRouter = require('./routes/product');
 //var orderRouter = require('./routes/order');
@@ -34,10 +37,8 @@ var server = app.listen(3000, function(){
 
 //Podemos poner expresiones regulares
 app.get('*',function(req,res,next){
-    var error = new Error("Not Found");
-    
-    error.status = 404;
-    next(error);
+ 
+    next(error.NotFound("Resource Not Found"));
     
     //Cuando llamo a next sin nada se ejecuta el proximo middleware    
     //Los middleware no se comunican entre si pasandose informacion
@@ -45,10 +46,15 @@ app.get('*',function(req,res,next){
     //agregando informacion al objeto request    
 });
 
+app.use(errorHandler.clientErrorHandler);
+app.use(errorHandler.serverErrorHandler);
+
 //Por tener 4 parametros es interpretado como un handler especial
+/*
 app.use(function(err,req,res,next){
    res.status(err.status).json({
       message: err.message || 'Internal Server Error' 
    });
     
 });
+*/

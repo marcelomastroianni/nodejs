@@ -28,3 +28,15 @@ podemos configurar en una variable de entorno por ejemplo el secretPhrase para c
 
 Si a un middleware le paso 4 parametros
 el primer parametro es un error.
+
+
+carpeta lib/helpers
+para librerias con funciones que se puedan llamar desde cualquier lugar
+
+carpeta lib/middleware
+funciones para inyectar dentro de app.user
+por ejemplo un middleware para manerar los errores.
+
+
+Creamos un handler para todas las rutas que no creamos
+Creamos un endpoint que es un middleware para el manejo de todos los errores.

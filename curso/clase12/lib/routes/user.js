@@ -1,5 +1,6 @@
 var express = require('express');
 var authService = require('../services/auth');
+var Error = require('../helpers/error.js');
 
 
 /*
@@ -28,19 +29,27 @@ var sendResponse = function(err, data, res){
 router.post('/', function(req, res){
   var user = new User(req.body);
   user.save(function(err, data){
-    sendResponse(err, data, res);
+    //sendResponse(err, data, res);
+      if(err) return next(err);
+      res.status(200).json(data);
   });
 });
 
 router.put('/:id', function(req, res){
   User.findById(req.params.id, function(err, user) {
+      if (!user)
+          next(Error.NotFound("User Not Found");
+      if(err) return next(err);
+      
       user.gender = req.body.gender;
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
       user.userName = req.body.userName;
       user.email = req.body.email;
       user.save(function(err,user){
-        sendResponse(err, user, res);
+        //sendResponse(err, user, res);
+        if(err) return next(err);
+        res.status(200).json(user);
       });
     }
   );
@@ -69,7 +78,7 @@ router.put('/:id', function(req, res){
 */
 
 router.get('/', 
-  //authService.authenticate(),         
+  //authService.authenticate(),             
   function(req, res){
     console.log(req.user);
     User.find({},
@@ -81,10 +90,17 @@ router.get('/',
 );
 
 router.get('/:id', 
-  authService.authenticate(),                  
+  //authService.authenticate(),                  
   function(req, res){
   User.findById(req.params.id, function(err, user){
-    sendResponse(err, user, res);
+      
+    if (!user) 
+        return next(Error.NotFound("User Not Found"));
+    if(err) 
+        return next(err);
+      
+    //sendResponse(err, user, res);
+    res.status(200).json(user);
   });
 });
 
