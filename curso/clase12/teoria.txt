@@ -1,0 +1,25 @@
+carpeta lib
+	todos los fuentes
+carpeta bin
+	si tiene dlls externas va aca
+	Si junta todo en un solo js para obtimizar ese archivo va aca.
+	en el backend no tiene tanto sentido
+
+carpeta test
+	con los test
+
+punto de entrada se suele llamar
+	index.js
+	server.js (en node es mas comun con este nombre, en npm si no ponemos nada suele levantar un server.js por defecto en el start).
+
+package.js
+
+carpeta node_modules
+	
+
+
+
+
+Las variables de entorno estan en el sistema operativo
+El proceso de node puede leer las variables de entorno
+podemos configurar en una variable de entorno por ejemplo el secretPhrase para crear los json web tokens
