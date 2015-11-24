@@ -23,3 +23,8 @@ carpeta node_modules
 Las variables de entorno estan en el sistema operativo
 El proceso de node puede leer las variables de entorno
 podemos configurar en una variable de entorno por ejemplo el secretPhrase para crear los json web tokens
+
+
+
+Si a un middleware le paso 4 parametros
+el primer parametro es un error.

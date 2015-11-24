@@ -69,7 +69,7 @@ router.put('/:id', function(req, res){
 */
 
 router.get('/', 
-  authService.authenticate(),         
+  //authService.authenticate(),         
   function(req, res){
     console.log(req.user);
     User.find({},
@@ -80,7 +80,9 @@ router.get('/',
   }
 );
 
-router.get('/:id', function(req, res){
+router.get('/:id', 
+  authService.authenticate(),                  
+  function(req, res){
   User.findById(req.params.id, function(err, user){
     sendResponse(err, user, res);
   });
