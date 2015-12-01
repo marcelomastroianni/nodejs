@@ -150,7 +150,7 @@ describe("User API", function(){
    });
     
     it("should  delete an user " ,function(done){
-       request.delete('http://localhost:3000/users/' + userData._id)
+       request.del('http://localhost:3000/users/' + userData._id)
             .send()
             .set('Authorization','JWT ' + token)
             //.set('Accept','application/json')
@@ -158,7 +158,7 @@ describe("User API", function(){
                 //console.log(err);
                 //console.log(res);
                 //console.log(err);           
-                //expect(res.status).to.be.equal(200);
+                expect(res.status).to.be.equal(200);
                 //expect(res.body.userName).to.be.equal(userData.userName);
                 
                 done();
