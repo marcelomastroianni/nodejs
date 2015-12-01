@@ -8,7 +8,7 @@ var router = express.Router({
 
 var User = require('../models/db').User; 
 
-router.post('/', function(req, res, next){
+router.post('/', authService.authenticate(),function(req, res, next){
   var user = new User(req.body);
   user.save(function(err, data){
     if (err) return next(err);
@@ -16,7 +16,9 @@ router.post('/', function(req, res, next){
   });
 });
 
-router.put('/:id', function(req, res, next){
+router.put('/:id', authService.authenticate(),
+
+           function(req, res, next){
   User.findById(req.params.id, function(err, user) {
       if (err) return next(err);
       if(!user) return next(error.NotFound('User Not Found'));
@@ -46,7 +48,9 @@ router.get('/',
   }
 );
 
-router.get('/:id', function(req, res, next){
+router.get('/:id', 
+ authService.authenticate(),
+ function(req, res, next){
   User.findById(req.params.id, function(err, user){
     if (err) return next(err);
     if (!user) return next(error.NotFound('User Not Found'));
@@ -54,7 +58,7 @@ router.get('/:id', function(req, res, next){
   });
 });
 
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', authService.authenticate(),function(req, res, next){
   User.findById(req.params.id, function(err, user){
     if (err) return next(err);
     if(!user) return next(error.NotFound('User Not Found'));    
