@@ -149,7 +149,38 @@ describe("User API", function(){
             })
    });
     
-    it("should  delete an user " ,function(done){
+  
+    
+    
+     it("should  update an user " ,function(done){
+            var lastNameNewValue ='cambiado';
+            userData.lastName = lastNameNewValue;
+         
+       request.put('http://localhost:3000/users/' + userData._id)
+            .send(userData)
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                //console.log(res);
+                //console.log(err);           
+                expect(res.status).to.be.equal(200);
+                //expect(res.body.userName).to.be.equal(userData.userName);
+           
+                userModel.findById(userData._id, function(err, user){
+                    if (err) throw err;
+                    //if (!user) return next(error.NotFound('User Not Found'));
+                    expect(user.lastName).to.be.equal(lastNameNewValue);
+                    done();
+                    
+                });
+                
+                
+            })
+   });
+    
+    
+      it("should  delete an user " ,function(done){
        request.del('http://localhost:3000/users/' + userData._id)
             .send()
             .set('Authorization','JWT ' + token)
