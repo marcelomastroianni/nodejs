@@ -61,6 +61,31 @@ describe("User API", function(){
 
     });
     
+     it("should return a token in a succesfull login" ,function(done){
+       request.post('http://localhost:3000/users/login')
+            .send({
+                userName:adminData.userName,
+                password:adminData.password
+            })
+            .end(function(err,res){
+                expect(res.body.token).to.be.ok;//Es algo que es evaluable como true: existe, es distinto de vacio, es distinto de null
+                token = res.body.token;
+                done();
+            })
+   });
+    
+       it("should return a 404 when login fails" ,function(done){
+       request.post('http://localhost:3000/users/login')
+            .send({
+                userName: 'wrongUser',
+                password: 'wrongPassword'
+            })
+            .end(function(err,res){
+                expect(res.status).to.be.equal(404);
+                done();
+            })
+   });
+    
 });
 
 

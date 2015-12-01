@@ -69,7 +69,7 @@ router.delete('/:id', authService.authenticate(),function(req, res, next){
   });
 });
 
-router.post('/login', function(req, res){
+router.post('/login', function(req, res,next){
   User.findOne( { userName : req.body.userName } , function(err, user){
    
     if (err) return next(err);
