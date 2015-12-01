@@ -160,8 +160,16 @@ describe("User API", function(){
                 //console.log(err);           
                 expect(res.status).to.be.equal(200);
                 //expect(res.body.userName).to.be.equal(userData.userName);
+           
+                userModel.findById(userData._id, function(err, user){
+                    if (err) throw err;
+                    //if (!user) return next(error.NotFound('User Not Found'));
+                    expect(user).to.be.null;
+                    done();
+                    
+                });
                 
-                done();
+                
             })
    });
     

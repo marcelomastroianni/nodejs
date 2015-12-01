@@ -22,7 +22,7 @@ router.put('/:id', authService.authenticate(),
   User.findById(req.params.id, function(err, user) {
       if (err) return next(err);
       if(!user) return next(error.NotFound('User Not Found'));
-      user.gender = req.body.gender;
+      //user.gender = req.body.gender;
       user.firstName = req.body.firstName;
       user.lastName = req.body.lastName;
       user.userName = req.body.userName;
