@@ -1,0 +1,62 @@
+unit test o test unitarios:
+-------------------------------
+    Se testea una funcionalidad aislada de todo el sistema.
+    La funcion es lo mas facil de testear, cuando una funciona realiza una sola tarea se considera facil de testear.
+    
+    La idea es hacer los test unitarios en el momento de desarollo.
+    Hay dos modalidades de desarrollo:
+        - TDD
+            Test development drive
+        - BDD
+            Behavior development drive,
+            es una version mas semantica al TDD, los test son mas faciles de leer.
+            
+    ¿Porque deberia ser la misma persona quien programe el que desarrolle los test?
+    
+    
+    function a() {
+    
+        b = new B();
+        c = new c();
+        d = new D();
+        
+        return b() + c() + d();    
+    }
+    
+    En esta funcion es dificil hacer un test unitario porque las dependecias de estas funcion son explicitas dentro de la funcion,
+    en lugar de recibir sus dependencias por parametro.
+    
+    
+    En este otro caso es mucho mas sencillo realizar los test sobre esta funcion recibe como parametros sus dependencias.
+    Y de esta forma es posible mockear las dependencias que recibe la funcion.
+    function a(b,c,d) {
+    
+        return b() + c() + d();    
+    }
+
+
+    En javascript hay varias maneras de realizar el mock de las dependencias.
+    
+    Sino puedo aislar las dependencias estoy mas en el caso de test de integracion que en el test unitario.
+    
+    Con las clases es como el caso de las funciones, necesitamos detectar las dependencias y ver como podemos mockear las mismas.
+    
+    
+    Hay 2 tipos de funciones:
+    
+        puras:
+            A los mismos parametros recibimos los mismos resultados
+            Son las mas faciles de testear.
+        impuras:
+            Un efecto secundario de una funcion es algo que pasa que no depende de los paramtros.
+            Por ejemplo cuando ingresamos algo en la base de datos, y logueamos lo que hacemos, si la funcion no devuelve nada es dificil de testear.
+            ¿Como se si el console.log funciono o no?
+            
+            
+    
+    
+
+integration test o test de integracion o test de escenarios:
+--------------------------------------------------------------
+
+end to end testing.
