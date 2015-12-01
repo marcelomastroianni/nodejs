@@ -50,16 +50,7 @@ describe("User API", function(){
         });
     });
 
-    //El usuario que insertamos deberiamos borrarlo.
-    //De esta forma vamos a poder correr muchas veces nuestros test
-    after(function(done){
-        userModel.remove({userName: adminData.userName},function(err,data){
-            if(err) throw err;
-            console.log("Deleted user " + adminData.userName);
-            done();           
-        });
 
-    });
     
      it("should return a token in a succesfull login" ,function(done){
        request.post('http://localhost:3000/users/login')
@@ -70,6 +61,7 @@ describe("User API", function(){
             .end(function(err,res){
                 expect(res.body.token).to.be.ok;//Es algo que es evaluable como true: existe, es distinto de vacio, es distinto de null
                 token = res.body.token;
+                console.log(token);
                 done();
             })
    });
@@ -85,6 +77,127 @@ describe("User API", function(){
                 done();
             })
    });
+    
+    it("should return unauthoized when user not logged" ,function(done){
+       request.get('http://localhost:3000/users/')
+            .send()
+            .end(function(err,res){
+                //console.log(err);
+                expect(res.status).to.be.equal(401);
+                done();
+            })
+   });
+    
+     it("should  return 200 when user logged" ,function(done){
+       request.get('http://localhost:3000/users/')
+            .send()
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                expect(res.status).to.be.equal(200);
+                done();
+            })
+   });
+    
+    
+     /*
+     it("should  add an user " ,function(done){
+       request.put('http://localhost:3000/users/')
+            .send(userData)
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                expect(res.status).to.be.equal(200);
+                done();
+            })
+   });
+    */
+    
+    it("should  add an user " ,function(done){
+       request.post('http://localhost:3000/users/')
+            .send(userData)
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                //console.log(res);
+                //console.log(err);           
+                expect(res.status).to.be.equal(200);
+                expect(res.body.userName).to.be.equal(userData.userName);
+                userData._id = res.body._id;
+                done();
+            })
+   });
+    
+    
+    it("should  get an user " ,function(done){
+       request.get('http://localhost:3000/users/' + userData._id)
+            .send()
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                //console.log(res);
+                //console.log(err);           
+                expect(res.status).to.be.equal(200);
+                expect(res.body.userName).to.be.equal(userData.userName);
+                expect(res.body._id).to.be.equal(userData._id);
+                
+                done();
+            })
+   });
+    
+    it("should  delete an user " ,function(done){
+       request.delete('http://localhost:3000/users/' + userData._id)
+            .send()
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                //console.log(res);
+                //console.log(err);           
+                //expect(res.status).to.be.equal(200);
+                //expect(res.body.userName).to.be.equal(userData.userName);
+                
+                done();
+            })
+   });
+    
+    /*
+    it("should  delete an user " ,function(done){
+       request.post('http://localhost:3000/users/')
+            .send(userData)
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                //console.log(err);
+                expect(res.status).to.be.equal(200);
+                done();
+            })
+   });
+    */
+    
+    
+        //El usuario que insertamos deberiamos borrarlo.
+    //De esta forma vamos a poder correr muchas veces nuestros test
+    after(function(done){
+        userModel.remove({userName: adminData.userName},function(err,data){
+            if(err) throw err;
+            console.log("Deleted user " + adminData.userName);
+           
+            userModel.remove({userName: userData.userName},function(err,data){
+                if(err) throw err;
+                console.log("Deleted user " + userData.userName);
+                done();
+            });
+            
+        });
+
+    });
+    
+    
     
 });
 
