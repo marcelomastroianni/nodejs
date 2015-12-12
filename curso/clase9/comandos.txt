@@ -5,9 +5,9 @@ MongoDB 50 tricks & tips
 -----------------------------------------
 IMPORTACION
 -----------------------------------------
-mongoimport --db test --collection products --file products.json
+mongoimport --db test --collection products --file products.json  --jsonArray
 
-mongoimport --db test --collection users --file users.json
+mongoimport --db test --collection users --file users.json  --jsonArray
 -----------------------------------------
 
 
