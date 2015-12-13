@@ -8,7 +8,7 @@ var error = require('./lib/helpers/error');
 var errorHandler = require('./lib/middlewares/error');
 
 var userRouter = require('./lib/routes/user');
-//var productRouter = require('./routes/product');
+var productRouter = require('./lib/routes/product');
 //var orderRouter = require('./routes/order');
 
 var app = express();
@@ -16,7 +16,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(authService.configure('Secret Phrease', db.User));
 app.use('/users', userRouter);
-//app.use('/products', productRouter);
+app.use('/products', productRouter);
 //app.use('/order', orderRouter);
 
 app.get('/', function(req, res){

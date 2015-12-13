@@ -36,7 +36,7 @@ router.put('/:id', authService.authenticate(),
 });
 
 router.get('/', 
-  authService.authenticate(),         
+  //authService.authenticate(),         
   function(req, res, next){
     console.log(req.user);
     User.find({},

@@ -30,5 +30,5 @@ process.on('SIGINT', function () {
 // load and exports all the mongoose models
 
 exports.User = require('./user');
-//exports.Product = require('./product');
+exports.Product = require('./product');
 //exports.Order = require('./order');
