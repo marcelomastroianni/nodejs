@@ -1,0 +1,158 @@
+unit test o test unitarios:
+-------------------------------
+    Se testea una funcionalidad aislada de todo el sistema.
+    La funcion es lo mas facil de testear, cuando una funciona realiza una sola tarea se considera facil de testear.
+    
+    La idea es hacer los test unitarios en el momento de desarollo.
+    Hay dos modalidades de desarrollo:
+        - TDD
+            Test development drive
+        - BDD
+            Behavior development drive,
+            es una version mas semantica al TDD, los test son mas faciles de leer.
+            
+    ¿Porque deberia ser la misma persona quien programe el que desarrolle los test?
+    
+    
+    function a() {
+    
+        b = new B();
+        c = new c();
+        d = new D();
+        
+        return b() + c() + d();    
+    }
+    
+    En esta funcion es dificil hacer un test unitario porque las dependecias de estas funcion son explicitas dentro de la funcion,
+    en lugar de recibir sus dependencias por parametro.
+    
+    
+    En este otro caso es mucho mas sencillo realizar los test sobre esta funcion recibe como parametros sus dependencias.
+    Y de esta forma es posible mockear las dependencias que recibe la funcion.
+    function a(b,c,d) {
+    
+        return b() + c() + d();    
+    }
+
+
+    En javascript hay varias maneras de realizar el mock de las dependencias.
+    
+    Sino puedo aislar las dependencias estoy mas en el caso de test de integracion que en el test unitario.
+    
+    Con las clases es como el caso de las funciones, necesitamos detectar las dependencias y ver como podemos mockear las mismas.
+    
+    
+    Hay 2 tipos de funciones:
+    
+        puras:
+            A los mismos parametros recibimos los mismos resultados
+            Son las mas faciles de testear.
+        impuras:
+            Un efecto secundario de una funcion es algo que pasa que no depende de los paramtros.
+            Por ejemplo cuando ingresamos algo en la base de datos, y logueamos lo que hacemos, si la funcion no devuelve nada es dificil de testear.
+            ¿Como se si el console.log funciono o no?
+            
+            
+    
+    
+
+integration test o test de integracion o test de escenarios:
+--------------------------------------------------------------
+    Se trata de emular mas el comportamiento del usuario si es que se tiene una interfaz grafica.
+    O bien de un agente integrador, por ejemplo emular una conexion http para consumir los servicios rest de una api y comprobar su funcionamiento.
+    
+    
+
+
+
+
+end to end testing.
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+Dependencias:
+
+mocha:
+
+    sudo npm install -g mocha
+
+chai: necistamos que este en nuestra pc para poder correr los test, pero no es necesario que esten en el servidor para que funcione el sistema
+    npm install chai --save-dev
+    
+    con -dev lo guarda como dependecias pero de dev. De esta forma no se instala en el servidor, 
+    es decir que es una dependencia pero solo en fase de desarrollo.
+
+superagent: la vamos a usar para realizar peticiones http
+
+    npm install superagent --save-dev
+
+
+
+
+{
+  "name": "clase-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.13.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.4.1",
+    "mongoose": "^2.0.46",
+    "passport": "^0.3.2",
+    "passport-jwt": "^1.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "superagent": "^1.4.0"
+  }
+}
+
+
+
+------------------------------------------------------
+------------------------------------------------------
+
+Para correr los test escribimos en la linea de comandos.
+
+mocha
+
+
+
+------------------------------------------------------
+------------------------------------------------------
+Lo importante es que los test sean autocontenidos.
+Que no se necesite nada para correr los test, mas que los propios test.
+
+Para lograr esto mocha provee lo que se llaman hooks.
+
+
+Se va a correr el test, 
+se va a obtener un token,
+y ese token hay que guardarlo para poder ejecutar los demas test.
+
+
+
+------------------------------------------------------
+hooks hay 2 que vamos a estar usando
+
+1) before : que recibe una funcion
+
+
+2) after: codigo que tiene que correr cuando todos los test hayan terminado.
+
+
+
+
+
+
+

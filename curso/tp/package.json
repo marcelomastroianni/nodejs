@@ -1,0 +1,26 @@
+{
+  "name": "clase-6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.13.1",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.4.1",
+    "mongoose": "^2.0.46",
+    "passport": "^0.3.2",
+    "passport-jwt": "^1.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "superagent": "^1.4.0"
+  }
+}
