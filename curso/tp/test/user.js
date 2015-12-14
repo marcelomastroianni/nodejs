@@ -61,7 +61,7 @@ describe("User API", function(){
             .end(function(err,res){
                 expect(res.body.token).to.be.ok;//Es algo que es evaluable como true: existe, es distinto de vacio, es distinto de null
                 token = res.body.token;
-                console.log(token);
+                //console.log(token);
                 done();
             })
    });

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // build the connection string
-var dbURI = 'mongodb://localhost/nodestore';
+var dbURI = 'mongodb://localhost/test';
 
 // create the database connection
 mongoose.connect(dbURI);
@@ -31,4 +31,4 @@ process.on('SIGINT', function () {
 
 exports.User = require('./user');
 exports.Product = require('./product');
-//exports.Order = require('./order');
+exports.Order = require('./order');

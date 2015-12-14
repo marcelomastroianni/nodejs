@@ -13,8 +13,8 @@ var orderItemSchema = new mongoose.Schema({
 });
 
 var orderSchema = new mongoose.Schema({
-    user: userDataSchema,
-    items: [orderItemSchema]
+    user: String,//userDataSchema,
+    items: String//[orderItemSchema]
 });
 
 module.exports = mongoose.model('Order', orderSchema);
