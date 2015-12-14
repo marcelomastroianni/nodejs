@@ -26,9 +26,13 @@ router.get('/',
 
 //Alta
 router.post('/', authService.authenticate(),function(req, res, next){
+      console.log("sdfdsgdsgsddgsgs");
   var order = new Order(req.body);
   order.save(function(err, data){
-    if (err) return next(err);
+    if (err) {
+        console.log(err);
+        return next(err);   
+    }
     res.status(200).json(data);
   });
 });

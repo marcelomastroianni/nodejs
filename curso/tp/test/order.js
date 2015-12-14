@@ -6,13 +6,20 @@ var request  = require('superagent');
 var server = require('../index'); //Ya por incluir este modulo estamos levantando el servidor.
 
 
-
+var mongo = require("mongodb");
 
 describe("Order API", function(){
     
     var orderData = {
-        user : "Detergente B",
-        items : "12",
+        user : {
+          _id : new mongo.ObjectID("566e144ed47998d20e0001f9"),
+          userName : "Juan",
+          email: "Juan@mail.com"
+        },
+        items : [{_id : new mongo.ObjectID("566e144ed47998d20e0001f9"),
+                  name : "Detergente A",
+                  price: "12"}
+        ],
     };
     
     var adminData = {
