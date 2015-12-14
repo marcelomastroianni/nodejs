@@ -88,7 +88,7 @@ describe("User API", function(){
             })
    });
     
-     it("should  return 200 when user logged" ,function(done){
+     it("should return 200 when user logged" ,function(done){
        request.get('http://localhost:3000/users/')
             .send()
             .set('Authorization','JWT ' + token)
@@ -115,7 +115,7 @@ describe("User API", function(){
    });
     */
     
-    it("should  add an user " ,function(done){
+    it("should add an user " ,function(done){
        request.post('http://localhost:3000/users/')
             .send(userData)
             .set('Authorization','JWT ' + token)
@@ -132,7 +132,7 @@ describe("User API", function(){
    });
     
     
-    it("should  get an user " ,function(done){
+    it("should get an user " ,function(done){
        request.get('http://localhost:3000/users/' + userData._id)
             .send()
             .set('Authorization','JWT ' + token)
@@ -152,7 +152,7 @@ describe("User API", function(){
   
     
     
-     it("should  update an user " ,function(done){
+     it("should update an user " ,function(done){
             var lastNameNewValue ='cambiado';
             userData.lastName = lastNameNewValue;
          
@@ -180,7 +180,7 @@ describe("User API", function(){
    });
     
     
-      it("should  delete an user " ,function(done){
+      it("should delete an user " ,function(done){
        request.del('http://localhost:3000/users/' + userData._id)
             .send()
             .set('Authorization','JWT ' + token)

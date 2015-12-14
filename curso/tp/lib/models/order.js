@@ -13,8 +13,14 @@ var orderItemSchema = new mongoose.Schema({
 });
 
 var orderSchema = new mongoose.Schema({
-    user: String,//userDataSchema,
-    items: String//[orderItemSchema]
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userDataSchema'
+    },
+    items: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: '[orderItemSchema]'
+    }
 });
 
 module.exports = mongoose.model('Order', orderSchema);

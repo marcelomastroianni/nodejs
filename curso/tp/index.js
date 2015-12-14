@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(authService.configure('Secret Phrease', db.User));
 app.use('/users', userRouter);
 app.use('/products', productRouter);
-app.use('/order', orderRouter);
+app.use('/orders', orderRouter);
 
 app.get('/', function(req, res){
   res.json({

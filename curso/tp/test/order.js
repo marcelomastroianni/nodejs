@@ -8,15 +8,11 @@ var server = require('../index'); //Ya por incluir este modulo estamos levantand
 
 
 
-describe("Product API", function(){
+describe("Order API", function(){
     
-  
-    
-    var productData = {
-        name : "Detergente B",
-        price : "12",
-        desc : "5",
-        category : "Limpieza",        
+    var orderData = {
+        user : "Detergente B",
+        items : "12",
     };
     
     var adminData = {
@@ -50,51 +46,51 @@ describe("Product API", function(){
             .end(function(err,res){
                 expect(res.body.token).to.be.ok;//Es algo que es evaluable como true: existe, es distinto de vacio, es distinto de null
                 token = res.body.token;
-                //console.log(token);
+  
                 done();
             })
    });
     
     
-    it("should get product list when user logged" ,function(done){
-       request.get('http://localhost:3000/products/')
+    it("should get order list when user logged" ,function(done){
+       request.get('http://localhost:3000/orders/')
             .send()
             .set('Authorization','JWT ' + token)
-            //.set('Accept','application/json')
+           
             .end(function(err,res){
-                //console.log(err);
+
                 expect(res.status).to.be.equal(200);
                 done();
             })
    });
     
     
-     it("should add a product " ,function(done){
-       request.post('http://localhost:3000/products/')
-            .send(productData)
+    it("should add an order " ,function(done){
+       request.post('http://localhost:3000/orders/')
+            .send(orderData)
             .set('Authorization','JWT ' + token)
-            //.set('Accept','application/json')
+  
             .end(function(err,res){
-                //console.log(err);
-                //console.log(res);
-                //console.log(err);           
+               
                 expect(res.status).to.be.equal(200);
-                expect(res.body.name).to.be.equal(productData.name);
-                productData._id = res.body._id;
+                expect(res.body.user).to.be.equal(orderData.user);
+                orderData._id = res.body._id;
                 done();
             })
    });
+    
+    
+    /*
+
     
     
      it("should get a product " ,function(done){
        request.get('http://localhost:3000/products/' + productData._id)
             .send()
             .set('Authorization','JWT ' + token)
-            //.set('Accept','application/json')
+   
             .end(function(err,res){
-                //console.log(err);
-                //console.log(res);
-                //console.log(err);           
+     
                 expect(res.status).to.be.equal(200);
                 expect(res.body.name).to.be.equal(productData.name);
                 expect(res.body._id).to.be.equal(productData._id);
@@ -146,24 +142,14 @@ describe("Product API", function(){
                 
             })
    });
-    
+    */
     
     
     after(function(done){
         userModel.remove({userName: adminData.userName},function(err,data){
             if(err) throw err;
-            console.log("Deleted user " + adminData.userName);
-            
-            /*
-            userModel.remove({userName: userData.userName},function(err,data){
-                if(err) throw err;
-                console.log("Deleted user " + userData.userName);
-                done();
-            });
-            */
-            
-              done();
-            
+            console.log("Deleted user " + adminData.userName);                        
+              done();            
         });
 
     });

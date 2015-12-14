@@ -9,31 +9,6 @@ var router = express.Router({
 var Product = require('../models/db').Product; 
 
 
-//Login
-router.post('/login', function(req, res,next){
-  User.findOne( { userName : req.body.userName } , function(err, user){
-   
-    if (err) return next(err);
-    if(!user) return next(error.NotFound('Incorrect username or password')); 
-    
-    user.comparePassword(req.body.password, function(err, match){
-    
-      if(!match){
-        return next(error.NotFound('Incorrect username or password')); 
-      }
-      
-      var token = authService.getToken(
-        {
-          sub : user._id,
-          username : user.userName
-        }, 
-        '15m'
-      );
-      
-      res.status(200).json({ token : token });
-    });
-  });
-});
 
 
 
@@ -41,7 +16,7 @@ router.post('/login', function(req, res,next){
 router.get('/', 
   authService.authenticate(),         
   function(req, res, next){
-    console.log(req.user);
+    //console.log(req.user);
     Product.find({},
       function (err, data){
         if (err) return next(err);
