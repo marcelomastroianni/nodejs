@@ -1,3 +1,5 @@
+//En angular se suele encampular las peticiones http en algo que se llama service.
+
 (function(){
   'use strict';
 

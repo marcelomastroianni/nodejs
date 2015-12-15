@@ -6,12 +6,17 @@ var authService = require('./lib/services/auth');
 var db = require('./lib/models/db');
 var error = require('./lib/helpers/error');
 var errorHandler = require('./lib/middlewares/error');
+var cors = require('cors'); //es un middleware de express
 
 var userRouter = require('./lib/routes/user');
 //var productRouter = require('./routes/product');
 //var orderRouter = require('./routes/order');
 
 var app = express();
+
+var corsOptions = {
+        origin : 'http://localhost:3001' //con un puerto distinto son dominios distintos para http
+};
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
