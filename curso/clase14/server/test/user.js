@@ -10,7 +10,7 @@ describe("User API", function(){
     lastName: "One",
     userName: "userone", 
     password: "userone",
-    email: "userone@gmail.com"
+    email: "useronetest@gmail.com"
   };
   
   var adminData = {
@@ -18,7 +18,7 @@ describe("User API", function(){
     lastName: "Admin",
     userName: "admin", 
     password: "admin",
-    email: "admin@gmail.com"
+    email: "admintest@gmail.com"
   };
   
   var token = null;
@@ -71,7 +71,7 @@ describe("User API", function(){
   
   it('should return a 200 ok when user is logged in', function(done){
     request.get('http://localhost:3000/users')
-      .set('Authorization', 'JWT ' + token)
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res){
           expect(res.status).to.be.equal(200);
           done();
@@ -81,7 +81,7 @@ describe("User API", function(){
   it('should create a new user', function(done){
     request.post('http://localhost:3000/users')
       .send(userData)
-      .set('Authorization', 'JWT ' + token)
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res){
           expect(res.status).to.be.equal(200);
           expect(res.body.userName).to.be.equal(userData.userName);
@@ -92,7 +92,7 @@ describe("User API", function(){
   
   it('should get a user', function(done){
       request.get('http://localhost:3000/users/' + userData._id)
-        .set('Authorization', 'JWT ' + token)
+        .set('Authorization', 'Bearer ' + token)
         .end(function(err, res){
             expect(res.status).to.be.equal(200);
             expect(res.body.userName).to.be.equal(userData.userName);
@@ -106,7 +106,7 @@ describe("User API", function(){
     
     request.put('http://localhost:3000/users/' + userData._id)
       .send(userData)
-      .set('Authorization', 'JWT ' + token)
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res){
           console.log(res);
           expect(res.status).to.be.equal(200);
