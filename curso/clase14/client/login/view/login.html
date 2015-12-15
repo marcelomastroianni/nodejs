@@ -1,0 +1,13 @@
+<div flex layout="colun" flex="70" layout-align="center center">
+  <h1>{{login.title}}</h1>
+  <label>Nombre de usuario</label>
+  <input name="username" required ng-model="login.loginData.userName" >
+  <br/>
+  <br/>
+  <label>Clave</label>
+  <input type="password" name="password" required ng-model="login.loginData.password">
+  <br/>
+  <br/>
+  <button ng-click="login.send()" style="margin-right:20px;">Ingresar</button>
+</div>
+  
