@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // build the connection string
-var dbURI = 'mongodb://localhost/test';
+var dbURI = 'mongodb://localhost/nodestore';
 
 // create the database connection
 mongoose.connect(dbURI);
