@@ -79,4 +79,18 @@ router.put('/:id', authService.authenticate(),
 
 
 
+//Alta item
+router.post('/:id/items/', authService.authenticate(),function(req, res, next){
+  var order = new Order(req.body);
+  order.save(function(err, data){
+    if (err) {
+        console.log(err);
+        return next(err);   
+    }
+    res.status(200).json(data);
+  });
+});
+
+
+
 module.exports = router;
