@@ -32,9 +32,12 @@ describe("User API", function(){
         
     };
     
+    /*
    it("should works..." ,function(){
        expect(1).to.be.equal(1);
    });
+   
+   */
     
     //Si nuestro codigo es asincronico le tenemos que avisar a mocha que termino.
 
