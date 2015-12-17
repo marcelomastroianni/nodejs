@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var userModel = require('../lib/models/db').User;
 var productModel = require('../lib/models/db').Product;
+var orderModel = require('../lib/models/db').Order;
 
 var request  = require('superagent');
 var server = require('../index'); //Ya por incluir este modulo estamos levantando el servidor.
@@ -37,7 +38,7 @@ describe("Order API", function(){
         user.save(function(err,data){
             //Si hay un error lo lanzamos, porque mocha esta a la espera de errores para mostrarlos por consola.
             if(err) throw err;
-            console.log("Created user " + adminData.userName);
+            //console.log("Created user " + adminData.userName);
             done();             
 
 
@@ -80,27 +81,29 @@ describe("Order API", function(){
             .end(function(err,res){
                
                 expect(res.status).to.be.equal(200);
-                expect(res.body.user).to.be.equal(orderData.user);
+                expect(res.body.user.userName).to.be.equal(orderData.user.userName);
+           
+    
+           
                 orderData._id = res.body._id;
                 done();
             })
    });
     
     
-    /*
-
     
     
-     it("should get a product " ,function(done){
-       request.get('http://localhost:3000/products/' + productData._id)
+    
+      it("should get an order " ,function(done){
+       request.get('http://localhost:3000/orders/' + orderData._id)
             .send()
             .set('Authorization','JWT ' + token)
    
             .end(function(err,res){
      
                 expect(res.status).to.be.equal(200);
-                expect(res.body.name).to.be.equal(productData.name);
-                expect(res.body._id).to.be.equal(productData._id);
+                expect(res.body.user.userName).to.be.equal(orderData.user.userName);
+                expect(res.body._id).to.be.equal(orderData._id);
                 
                 done();
             })
@@ -108,21 +111,21 @@ describe("Order API", function(){
     
     
     
-    it("should update a product " ,function(done){
-            var nameNewValue ="Detergente H";
-            productData.name = nameNewValue;
+    it("should update an order " ,function(done){
+            var nameNewValue ="Juan 2";
+            orderData.user.userName = nameNewValue;
          
-            request.put('http://localhost:3000/products/' + productData._id)
-                .send(productData)
+            request.put('http://localhost:3000/orders/' + orderData._id)
+                .send(orderData)
                 .set('Authorization','JWT ' + token)
                 //.set('Accept','application/json')
                 .end(function(err,res){
 
                     expect(res.status).to.be.equal(200);
 
-                    productModel.findById(productData._id, function(err, product){
+                    orderModel.findById(orderData._id, function(err, order){
                         if (err) throw err;
-                        expect(product.name).to.be.equal(nameNewValue);
+                        expect(order.user.userName).to.be.equal(nameNewValue);
                         done();                    
                     });                                
             })
@@ -130,8 +133,9 @@ describe("Order API", function(){
     
     
     
-      it("should delete a product " ,function(done){
-       request.del('http://localhost:3000/products/' + productData._id)
+    
+    it("should delete an order " ,function(done){
+       request.del('http://localhost:3000/orders/' + orderData._id)
             .send()
             .set('Authorization','JWT ' + token)
             //.set('Accept','application/json')
@@ -139,23 +143,23 @@ describe("Order API", function(){
                       
                 expect(res.status).to.be.equal(200);
         
-                productModel.findById(productData._id, function(err, product){
+                orderModel.findById(orderData._id, function(err, order){
                     if (err) throw err;
-                    expect(product).to.be.null;
-                    done();
-                    
+                    expect(order).to.be.null;
+                    done();                    
                 });
                 
                 
             })
    });
-    */
     
     
+
+
     after(function(done){
         userModel.remove({userName: adminData.userName},function(err,data){
             if(err) throw err;
-            console.log("Deleted user " + adminData.userName);                        
+             //console.log("Deleted user " + adminData.userName);                        
               done();            
         });
 

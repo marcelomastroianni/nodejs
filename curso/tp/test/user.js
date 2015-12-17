@@ -43,7 +43,7 @@ describe("User API", function(){
         user.save(function(err,data){
             //Si hay un error lo lanzamos, porque mocha esta a la espera de errores para mostrarlos por consola.
             if(err) throw err;
-            console.log("Created user " + adminData.userName);
+            //console.log("Created user " + adminData.userName);
             done();             
 
 
@@ -224,14 +224,16 @@ describe("User API", function(){
     after(function(done){
         userModel.remove({userName: adminData.userName},function(err,data){
             if(err) throw err;
-            console.log("Deleted user " + adminData.userName);
+            //console.log("Deleted user " + adminData.userName);
            
+            /*
             userModel.remove({userName: userData.userName},function(err,data){
                 if(err) throw err;
                 console.log("Deleted user " + userData.userName);
                 done();
-            });
+            });*/
             
+            done();
         });
 
     });
