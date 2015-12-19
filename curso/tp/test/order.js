@@ -23,9 +23,9 @@ describe("Order API", function(){
         ],
     };
     
-    var orderItemData = {_id : new mongo.ObjectID("566e144ed47998d20e0001f9"),
+    var orderItemData = {//_id : new mongo.ObjectID("566e144ed47998d20e0001f9"),
                   name : "Detergente B",
-                  price: "12"};
+                  pricet: "12"};
     
     
     var adminData = {
@@ -160,8 +160,29 @@ describe("Order API", function(){
             })
    });
     
+      /*
+     it("should delete an item to order " ,function(done){
+       request.del('http://localhost:3000/orders/' + orderData._id + '/items/' + orderData.items[0]._id )
+            .send()
+            .set('Authorization','JWT ' + token)
+            //.set('Accept','application/json')
+            .end(function(err,res){
+                      
+                expect(res.status).to.be.equal(200);
+        
+                orderModel.findById(orderData._id, function(err, order){
+                    if (err) throw err;
+                    
+                    expect(order.items.length).to.be.equal(1);
+                    
+                    done();                    
+                });
+                
+                
+            })
+   });
 
-    
+        */
     /*
     it("should delete an order " ,function(done){
        request.del('http://localhost:3000/orders/' + orderData._id)

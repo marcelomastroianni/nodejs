@@ -87,6 +87,8 @@ router.post('/:id/items/', authService.authenticate(),function(req, res, next){
           if(!order) return next(error.NotFound('Order Not Found'));
           
           order.items.push(req.body);
+         console.log(req.body);
+        
         
           order.save(function(err,order){
             if (err) return next(err);
@@ -96,6 +98,126 @@ router.post('/:id/items/', authService.authenticate(),function(req, res, next){
     );
         
 });
+
+
+
+
+ /*
+//Alta item
+router.post('/:id/items/', authService.authenticate(),function(req, res, next){
+    
+    Order.findById(req.params.id, function(err, order) {
+          if (err) return next(err);
+          if(!order) return next(error.NotFound('Order Not Found'));
+          
+          order.items.push(req.body);
+        
+          res.status(200).json(order);
+        
+        
+          / *order.save(function(err,order){
+            if (err) return next(err);
+            res.status(200).json(order);
+          });* /
+        }
+    );
+        
+});
+*/
+
+
+//Baja item
+router.delete('/:id/items/:idItem/', authService.authenticate(),function(req, res, next){
+    
+    
+   Order.findById(req.params.id, function(err, order) {
+          if (err) return next(err);
+          if(!order) return next(error.NotFound('Order Not Found'));
+          
+    
+          order.items.pull(req.params.idItem);
+       
+          
+           res.status(200).json(order);
+          
+         
+        }
+    );
+    
+    
+    
+     /*
+    Order.update( 
+          { _id: req.params.id },
+          { $pull: { items : req.params.idItem } },
+          { safe: true },
+          function removeConnectionsCB(err, data) {
+              if (err) return next(err);
+              res.status(200).json(data);
+          });
+     */
+    /*
+    
+    Order.update( 
+          { _id: req.params.id },
+          { $pull: { items : { _id : req.params.idItem } } },
+          { safe: true },
+          function removeConnectionsCB(err, data) {
+              if (err) return next(err);
+              res.status(200).json(data);
+          });
+    */
+    
+    
+    /*
+    
+    
+    Order.findById(req.params.id, function(err, order) {
+          if (err) return next(err);
+          if(!order) return next(error.NotFound('Order Not Found'));
+          
+          order.items.push(req.body);
+        
+          var itemToRemove;
+        
+          order.items.forEach(function(item, index, array){
+            
+             if (item._id == req.params.idItem)
+                {
+                    itemToRemove = item;        
+                }
+            
+          });
+        
+        
+        
+          itemToRemove.remove()
+          
+          
+           itemToRemove.remove(function(err, data){
+                if (err) return next(err);
+                res.status(200).json(data);
+            });
+          
+          
+          / *
+          if(itemToRemove)
+          {
+                order.items.remove(itemToRemove);
+          }
+        
+          order.save(function(err,order){
+            if (err) return next(err);
+            res.status(200).json(order);
+          });
+          * /
+        }
+    );
+    */
+        
+});
+
+
 
 
 

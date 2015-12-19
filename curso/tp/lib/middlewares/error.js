@@ -10,7 +10,7 @@ exports.clientErrorHandler = function(err, req, res, next){
 
 exports.serverErrorHandler = function(err, req, res, next){
   var msg = err.message || 'Internal Server Error';
-  //console.log(msg);
+  console.log(msg);
   return res.status(500).json({
     message: msg
   });
