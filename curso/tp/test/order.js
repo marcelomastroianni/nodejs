@@ -23,6 +23,11 @@ describe("Order API", function(){
         ],
     };
     
+    var orderItemData = {_id : new mongo.ObjectID("566e144ed47998d20e0001f9"),
+                  name : "Detergente B",
+                  price: "12"};
+    
+    
     var adminData = {
         firstName : "Admin",
         lastName : "Admin",
@@ -86,6 +91,9 @@ describe("Order API", function(){
     
            
                 orderData._id = res.body._id;
+           
+                orderData.items[0]._id = res.body.items[0]._id;
+           
                 done();
             })
    });
@@ -104,6 +112,7 @@ describe("Order API", function(){
                 expect(res.status).to.be.equal(200);
                 expect(res.body.user.userName).to.be.equal(orderData.user.userName);
                 expect(res.body._id).to.be.equal(orderData._id);
+                
                 
                 done();
             })
@@ -131,9 +140,29 @@ describe("Order API", function(){
             })
    });
     
+        
+    it("should add items to an order " ,function(done){
+       request.post('http://localhost:3000/orders/' + orderData._id + '/items/')
+            .send(orderItemData)
+            .set('Authorization','JWT ' + token)
+  
+            .end(function(err,res){
+               
+                expect(res.status).to.be.equal(200);
+                
+           
+                expect(res.body.items.length).to.be.equal(2);
+           
     
+           
+                //orderData._id = res.body._id;
+                done();
+            })
+   });
     
+
     
+    /*
     it("should delete an order " ,function(done){
        request.del('http://localhost:3000/orders/' + orderData._id)
             .send()
@@ -152,7 +181,7 @@ describe("Order API", function(){
                 
             })
    });
-    
+    */
     
 
 

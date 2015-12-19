@@ -81,14 +81,20 @@ router.put('/:id', authService.authenticate(),
 
 //Alta item
 router.post('/:id/items/', authService.authenticate(),function(req, res, next){
-  var order = new Order(req.body);
-  order.save(function(err, data){
-    if (err) {
-        console.log(err);
-        return next(err);   
-    }
-    res.status(200).json(data);
-  });
+    
+    Order.findById(req.params.id, function(err, order) {
+          if (err) return next(err);
+          if(!order) return next(error.NotFound('Order Not Found'));
+          
+          order.items.push(req.body);
+        
+          order.save(function(err,order){
+            if (err) return next(err);
+            res.status(200).json(order);
+          });
+        }
+    );
+        
 });
 
 
